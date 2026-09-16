@@ -1,0 +1,68 @@
+<!-- anemia/templates/anemia/home.html -->
+{% extends 'anemia/base.html' %}
+{% load static %}
+
+{% block title %}Home - Anemia Predictor{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to Anemia Predictor!</h1>
+    <p class="lead">Use this application to predict anemia based on your CBC parameters.</p>
+    <hr class="my-4">
+    <p>To get started, register or login, then navigate to the Predict page.</p>
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary btn-lg" href="{% url 'predict' %}" role="button">Predict Now</a>
+    {% else %}
+        <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login to Predict</a>
+    {% endif %}
+</div>
+
+<!-- Symptoms Section -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Symptoms of Anemia</h2>
+            <ul>
+                <li><strong>Fatigue:</strong> Feeling unusually tired and lacking energy.</li>
+                <li><strong>Weakness:</strong> A general sense of physical weakness and lack of strength.</li>
+                <li><strong>Pale or yellowish skin:</strong> Skin appears paler than usual or has a yellowish tint.</li>
+                <li><strong>Irregular heartbeats:</strong> Experiencing abnormal heart rhythms or palpitations.</li>
+                <li><strong>Shortness of breath:</strong> Difficulty breathing, especially during physical activity.</li>
+                <li><strong>Dizziness or lightheadedness:</strong> Feeling dizzy or as if you might faint.</li>
+                <li><strong>Chest pain:</strong> Experiencing pain or discomfort in the chest area.</li>
+                <li><strong>Cold hands and feet:</strong> Feeling unusually cold in the extremities, especially hands and feet.</li>
+                <li><strong>Headaches:</strong> Frequent or severe headaches.</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'anaemia.jpg' %}" class="img-fluid" alt="Anemia Symptoms">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    .jumbotron {
+        background-color: #f8f9fa;
+        padding: 2rem 1rem;
+    }
+    .jumbotron h1 {
+        font-size: 2.5rem;
+    }
+    .container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+        margin-bottom: 1rem;
+    }
+    .container ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .container ul li {
+        margin-bottom: 0.5rem;
+    }
+</style>

@@ -1,0 +1,70 @@
+{% extends 'anemia/base.html' %}
+{% load static %}
+
+{% block title %}Predict{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Predict Anemia</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <!-- Input ranges table -->
+        <h3>Input Ranges</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Low Range</th>
+                    <th>High Range</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HGB (Hemoglobin)</td>
+                    <td>13.8</td>
+                    <td>17.2</td>
+                </tr>
+                <tr>
+                    <td>RBC (Red Blood Cells)</td>
+                    <td>4.7</td>
+                    <td>6.1</td>
+                </tr>
+                <tr>
+                    <td>MCV (Mean Corpuscular Volume)</td>
+                    <td>80</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>MCH (Mean Corpuscular Hemoglobin)</td>
+                    <td>27</td>
+                    <td>31</td>
+                </tr>
+                <tr>
+                    <td>MCHC (Mean Corpuscular Hemoglobin Concentration)</td>
+                    <td>32</td>
+                    <td>36</td>
+                </tr>
+                <tr>
+                    <td>PLT (Platelets)</td>
+                    <td>150</td>
+                    <td>450</td>
+                </tr>
+                <tr>
+                    <td>WBC (White Blood Cells)</td>
+                    <td>4.0</td>
+                    <td>11.0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

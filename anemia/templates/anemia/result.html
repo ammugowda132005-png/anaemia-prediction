@@ -1,0 +1,100 @@
+{% extends 'anemia/base.html' %}
+{% load static %}
+
+{% block title %}Result{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Result</h2>
+    <h2>The Predicted Anemia is {{ prediction }}</h2>
+    <div class="alert alert-info mt-3">
+        <strong>Description:</strong> {{ description }}
+    </div>
+
+    <!-- Information about types of anemia -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">What is Anemia?</h2>
+            <p>
+                Anemia is a condition in which you lack enough healthy red blood cells to carry adequate oxygen to your body's tissues. There are several types of anemia, including iron deficiency anemia, vitamin deficiency anemia, aplastic anemia, and sickle cell anemia, each with different causes and treatments.
+            </p>
+        </div>
+    </div>
+
+    <!-- Descriptive Statistics -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Descriptive Statistics</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Statistic</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for column, stats in descriptive_stats.items %}
+                        {% for stat, value in stats.items %}
+                        <tr>
+                            <td>{{ column }} - {{ stat }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Model Accuracy -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Model Accuracy</h2>
+            <p>The accuracy of the model is {{ model_accuracy }}%.</p>
+        </div>
+    </div>
+
+    <!-- Confusion Matrix -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Confusion Matrix</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Iron deficiency anemia</th>
+                        <th>Vitamin deficiency anemia</th>
+                        <th>Aplastic anemia</th>
+                        <th>Sickle cell anemia</th>
+                        <th>Normocytic normochromic anemia</th>
+                        <th>Normocytic hypochromic anemia</th>
+                        <th>Other microcytic anemia</th>
+                        <th>Leukemia</th>
+                        <th>Healthy</th>
+                        <th>Thrombocytopenia</th>
+                        <th>Leukemia with thrombocytopenia</th>
+                        <th>Macrocytic anemia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in confusion_matrix %}
+                    <tr>
+                        <th>Predicted</th>
+                        {% for value in row %}
+                        <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Image related to anemia -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <img src="{% static 'download.png' %}" class="img-fluid" alt="Anemia Image">
+        </div>
+    </div>
+</div>
+{% endblock %}
